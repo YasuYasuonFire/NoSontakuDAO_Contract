@@ -9,6 +9,7 @@ pub mod governor {
         Mapping,
     };
     use openbrush::contracts::traits::psp22::*;
+    use openbrush::traits::String;
     use scale::{
         Decode,
         Encode,
@@ -19,6 +20,13 @@ pub mod governor {
     #[derive(Encode, Decode)]
     #[cfg_attr(feature = "std", derive(Debug, PartialEq, Eq, scale_info::TypeInfo))]
     pub enum VoteType {
+        Against,
+        For,
+    }
+
+    #[derive(Encode, Decode)]
+    #[cfg_attr(feature = "std", derive(Debug, PartialEq, Eq, scale_info::TypeInfo))]
+    pub enum EvalType {
         Against,
         For,
     }
@@ -45,7 +53,7 @@ pub mod governor {
     )]
     pub struct Proposal {
         to: AccountId,
-        amount: Balance,
+        description: String,
         vote_start: Timestamp,
         vote_end: Timestamp,
         executed: bool,
@@ -87,12 +95,12 @@ pub mod governor {
         pub fn propose(
             &mut self,
             to: AccountId,
-            amount: Balance,
             duration: u64,
+            description: String,
         ) -> Result<(), GovernorError> {
-            if amount == 0 {
-                return Err(GovernorError::AmountShouldNotBeZero)
-            }
+            // if amount == 0 {
+            //     return Err(GovernorError::AmountShouldNotBeZero)
+            //}
             if duration == 0 || duration > 60 * ONE_MINUTE {
                 return Err(GovernorError::DurationError)
             }
@@ -100,7 +108,7 @@ pub mod governor {
             let now = self.env().block_timestamp();
             let proposal = Proposal {
                 to,
-                amount,
+                description,
                 vote_start: now,
                 vote_end: now + duration * ONE_MINUTE,
                 executed: false,
@@ -117,6 +125,7 @@ pub mod governor {
             &mut self,
             proposal_id: ProposalId,
             vote: VoteType,
+            eval: EvalType,//忖度なしポイントの評価
         ) -> Result<(), GovernorError> {
             let caller = self.env().caller();
             let proposal = self
@@ -147,6 +156,13 @@ pub mod governor {
                 }
             }
 
+            match eval {
+                EvalType::Against => {
+                }
+                EvalType::For => {
+                }
+            }
+
             self.proposal_votes.insert(&proposal_id, &proposal_vote);
             Ok(())
         }
@@ -169,9 +185,9 @@ pub mod governor {
             }
 
             proposal.executed = true;
-            self.env()
-                .transfer(proposal.to, proposal.amount)
-                .map_err(|_| GovernorError::TransferError)?;
+            // self.env() //don't need tranfer to proposer
+            //     .transfer(proposal.to, proposal.amount)
+            //     .map_err(|_| GovernorError::TransferError)?;
 
             Ok(())
         }

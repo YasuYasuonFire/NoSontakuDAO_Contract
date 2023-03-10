@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x6ae0d2380d515230207ddcedc04d1de00ae81109e38519f175ab52e683bce7a9",
+    "hash": "0xeca0f393e49a3ae4d6a9cdbd798337d7575d6ab01b96d0ea6ca82ef525170267",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.68.0-nightly"
   },
@@ -56,21 +56,21 @@
               }
             },
             {
-              "label": "amount",
-              "type": {
-                "displayName": [
-                  "Balance"
-                ],
-                "type": 9
-              }
-            },
-            {
               "label": "duration",
               "type": {
                 "displayName": [
                   "u64"
                 ],
                 "type": 10
+              }
+            },
+            {
+              "label": "description",
+              "type": {
+                "displayName": [
+                  "String"
+                ],
+                "type": 9
               }
             }
           ],
@@ -104,6 +104,15 @@
                   "VoteType"
                 ],
                 "type": 17
+              }
+            },
+            {
+              "label": "eval",
+              "type": {
+                "displayName": [
+                  "EvalType"
+                ],
+                "type": 18
               }
             }
           ],
@@ -163,7 +172,7 @@
             "displayName": [
               "Option"
             ],
-            "type": 18
+            "type": 19
           },
           "selector": "0x5c417b0c"
         },
@@ -187,7 +196,7 @@
             "displayName": [
               "Option"
             ],
-            "type": 19
+            "type": 20
           },
           "selector": "0xba4dc5ec"
         },
@@ -435,9 +444,9 @@
                   "typeName": "AccountId"
                 },
                 {
-                  "name": "amount",
+                  "name": "description",
                   "type": 9,
-                  "typeName": "Balance"
+                  "typeName": "String"
                 },
                 {
                   "name": "vote_start",
@@ -488,7 +497,9 @@
         "id": 9,
         "type": {
           "def": {
-            "primitive": "u128"
+            "sequence": {
+              "type": 3
+            }
           }
         }
       },
@@ -689,6 +700,30 @@
               "variants": [
                 {
                   "index": 0,
+                  "name": "Against"
+                },
+                {
+                  "index": 1,
+                  "name": "For"
+                }
+              ]
+            }
+          },
+          "path": [
+            "governor",
+            "governor",
+            "EvalType"
+          ]
+        }
+      },
+      {
+        "id": 19,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "index": 0,
                   "name": "None"
                 },
                 {
@@ -715,7 +750,7 @@
         }
       },
       {
-        "id": 19,
+        "id": 20,
         "type": {
           "def": {
             "variant": {

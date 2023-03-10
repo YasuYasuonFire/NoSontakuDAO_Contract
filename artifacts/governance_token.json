@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xfaaf3c05b2312002af4042294b419c71b2a58b8b8eb69df1a20b025e80be585f",
+    "hash": "0xb24dc5c22d06b1bd3ec133c479acc9b1b564a71c3a250b62080696aa2020b8fb",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.68.0-nightly"
   },
@@ -62,197 +62,6 @@
       "docs": [],
       "events": [],
       "messages": [
-        {
-          "args": [
-            {
-              "label": "from",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "TransferFromInput1"
-                ],
-                "type": 2
-              }
-            },
-            {
-              "label": "to",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "TransferFromInput2"
-                ],
-                "type": 2
-              }
-            },
-            {
-              "label": "value",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "TransferFromInput3"
-                ],
-                "type": 0
-              }
-            },
-            {
-              "label": "data",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "TransferFromInput4"
-                ],
-                "type": 12
-              }
-            }
-          ],
-          "docs": [
-            " Transfers `value` tokens on the behalf of `from` to the account `to`",
-            " with additional `data` in unspecified format.",
-            "",
-            " This can be used to allow a contract to transfer tokens on ones behalf and/or",
-            " to charge fees in sub-currencies, for example.",
-            "",
-            " On success a `Transfer` and `Approval` events are emitted.",
-            "",
-            " # Errors",
-            "",
-            " Returns `InsufficientAllowance` error if there are not enough tokens allowed",
-            " for the caller to withdraw from `from`.",
-            "",
-            " Returns `InsufficientBalance` error if there are not enough tokens on",
-            " the the account Balance of `from`.",
-            "",
-            " Returns `ZeroSenderAddress` error if sender's address is zero.",
-            "",
-            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
-          ],
-          "label": "PSP22::transfer_from",
-          "mutates": true,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "psp22_external",
-              "TransferFromOutput"
-            ],
-            "type": 14
-          },
-          "selector": "0x54b3c76e"
-        },
-        {
-          "args": [],
-          "docs": [
-            " Returns the total token supply."
-          ],
-          "label": "PSP22::total_supply",
-          "mutates": false,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "psp22_external",
-              "TotalSupplyOutput"
-            ],
-            "type": 0
-          },
-          "selector": "0x162df8c2"
-        },
-        {
-          "args": [
-            {
-              "label": "spender",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "DecreaseAllowanceInput1"
-                ],
-                "type": 2
-              }
-            },
-            {
-              "label": "delta_value",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "DecreaseAllowanceInput2"
-                ],
-                "type": 0
-              }
-            }
-          ],
-          "docs": [
-            " Atomically decreases the allowance granted to `spender` by the caller.",
-            "",
-            " An `Approval` event is emitted.",
-            "",
-            " # Errors",
-            "",
-            " Returns `InsufficientAllowance` error if there are not enough tokens allowed",
-            " by owner for `spender`.",
-            "",
-            " Returns `ZeroSenderAddress` error if sender's address is zero.",
-            "",
-            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
-          ],
-          "label": "PSP22::decrease_allowance",
-          "mutates": true,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "psp22_external",
-              "DecreaseAllowanceOutput"
-            ],
-            "type": 14
-          },
-          "selector": "0xfecb57d5"
-        },
-        {
-          "args": [
-            {
-              "label": "spender",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "ApproveInput1"
-                ],
-                "type": 2
-              }
-            },
-            {
-              "label": "value",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "ApproveInput2"
-                ],
-                "type": 0
-              }
-            }
-          ],
-          "docs": [
-            " Allows `spender` to withdraw from the caller's account multiple times, up to",
-            " the `value` amount.",
-            "",
-            " If this function is called again it overwrites the current allowance with `value`.",
-            "",
-            " An `Approval` event is emitted.",
-            "",
-            " # Errors",
-            "",
-            " Returns `ZeroSenderAddress` error if sender's address is zero.",
-            "",
-            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
-          ],
-          "label": "PSP22::approve",
-          "mutates": true,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "psp22_external",
-              "ApproveOutput"
-            ],
-            "type": 14
-          },
-          "selector": "0xb20f1bbd"
-        },
         {
           "args": [
             {
@@ -332,6 +141,122 @@
         {
           "args": [
             {
+              "label": "owner",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "AllowanceInput1"
+                ],
+                "type": 2
+              }
+            },
+            {
+              "label": "spender",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "AllowanceInput2"
+                ],
+                "type": 2
+              }
+            }
+          ],
+          "docs": [
+            " Returns the amount which `spender` is still allowed to withdraw from `owner`.",
+            "",
+            " Returns `0` if no allowance has been set `0`."
+          ],
+          "label": "PSP22::allowance",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22_external",
+              "AllowanceOutput"
+            ],
+            "type": 0
+          },
+          "selector": "0x4d47d921"
+        },
+        {
+          "args": [
+            {
+              "label": "from",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "TransferFromInput1"
+                ],
+                "type": 2
+              }
+            },
+            {
+              "label": "to",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "TransferFromInput2"
+                ],
+                "type": 2
+              }
+            },
+            {
+              "label": "value",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "TransferFromInput3"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "label": "data",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "TransferFromInput4"
+                ],
+                "type": 12
+              }
+            }
+          ],
+          "docs": [
+            " Transfers `value` tokens on the behalf of `from` to the account `to`",
+            " with additional `data` in unspecified format.",
+            "",
+            " This can be used to allow a contract to transfer tokens on ones behalf and/or",
+            " to charge fees in sub-currencies, for example.",
+            "",
+            " On success a `Transfer` and `Approval` events are emitted.",
+            "",
+            " # Errors",
+            "",
+            " Returns `InsufficientAllowance` error if there are not enough tokens allowed",
+            " for the caller to withdraw from `from`.",
+            "",
+            " Returns `InsufficientBalance` error if there are not enough tokens on",
+            " the the account Balance of `from`.",
+            "",
+            " Returns `ZeroSenderAddress` error if sender's address is zero.",
+            "",
+            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
+          ],
+          "label": "PSP22::transfer_from",
+          "mutates": true,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22_external",
+              "TransferFromOutput"
+            ],
+            "type": 14
+          },
+          "selector": "0x54b3c76e"
+        },
+        {
+          "args": [
+            {
               "label": "to",
               "type": {
                 "displayName": [
@@ -392,42 +317,117 @@
         {
           "args": [
             {
-              "label": "owner",
+              "label": "spender",
               "type": {
                 "displayName": [
                   "psp22_external",
-                  "AllowanceInput1"
+                  "ApproveInput1"
                 ],
                 "type": 2
               }
             },
             {
-              "label": "spender",
+              "label": "value",
               "type": {
                 "displayName": [
                   "psp22_external",
-                  "AllowanceInput2"
+                  "ApproveInput2"
                 ],
-                "type": 2
+                "type": 0
               }
             }
           ],
           "docs": [
-            " Returns the amount which `spender` is still allowed to withdraw from `owner`.",
+            " Allows `spender` to withdraw from the caller's account multiple times, up to",
+            " the `value` amount.",
             "",
-            " Returns `0` if no allowance has been set `0`."
+            " If this function is called again it overwrites the current allowance with `value`.",
+            "",
+            " An `Approval` event is emitted.",
+            "",
+            " # Errors",
+            "",
+            " Returns `ZeroSenderAddress` error if sender's address is zero.",
+            "",
+            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
           ],
-          "label": "PSP22::allowance",
+          "label": "PSP22::approve",
+          "mutates": true,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22_external",
+              "ApproveOutput"
+            ],
+            "type": 14
+          },
+          "selector": "0xb20f1bbd"
+        },
+        {
+          "args": [
+            {
+              "label": "spender",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "DecreaseAllowanceInput1"
+                ],
+                "type": 2
+              }
+            },
+            {
+              "label": "delta_value",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "DecreaseAllowanceInput2"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [
+            " Atomically decreases the allowance granted to `spender` by the caller.",
+            "",
+            " An `Approval` event is emitted.",
+            "",
+            " # Errors",
+            "",
+            " Returns `InsufficientAllowance` error if there are not enough tokens allowed",
+            " by owner for `spender`.",
+            "",
+            " Returns `ZeroSenderAddress` error if sender's address is zero.",
+            "",
+            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
+          ],
+          "label": "PSP22::decrease_allowance",
+          "mutates": true,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22_external",
+              "DecreaseAllowanceOutput"
+            ],
+            "type": 14
+          },
+          "selector": "0xfecb57d5"
+        },
+        {
+          "args": [],
+          "docs": [
+            " Returns the total token supply."
+          ],
+          "label": "PSP22::total_supply",
           "mutates": false,
           "payable": false,
           "returnType": {
             "displayName": [
               "psp22_external",
-              "AllowanceOutput"
+              "TotalSupplyOutput"
             ],
             "type": 0
           },
-          "selector": "0x4d47d921"
+          "selector": "0x162df8c2"
         },
         {
           "args": [],
@@ -449,23 +449,6 @@
         {
           "args": [],
           "docs": [
-            " Returns the token name."
-          ],
-          "label": "PSP22Metadata::token_name",
-          "mutates": false,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "psp22metadata_external",
-              "TokenNameOutput"
-            ],
-            "type": 13
-          },
-          "selector": "0x3d261bd4"
-        },
-        {
-          "args": [],
-          "docs": [
             " Returns the token decimals."
           ],
           "label": "PSP22Metadata::token_decimals",
@@ -479,6 +462,23 @@
             "type": 4
           },
           "selector": "0x7271b782"
+        },
+        {
+          "args": [],
+          "docs": [
+            " Returns the token name."
+          ],
+          "label": "PSP22Metadata::token_name",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22metadata_external",
+              "TokenNameOutput"
+            ],
+            "type": 13
+          },
+          "selector": "0x3d261bd4"
         }
       ]
     },

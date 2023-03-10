@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xeca0f393e49a3ae4d6a9cdbd798337d7575d6ab01b96d0ea6ca82ef525170267",
+    "hash": "0x75bb4a10f4e2dc7e8f350ee88b1c97486759455691137017bc75907bb0513b44",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.68.0-nightly"
   },
@@ -105,15 +105,6 @@
                 ],
                 "type": 17
               }
-            },
-            {
-              "label": "eval",
-              "type": {
-                "displayName": [
-                  "EvalType"
-                ],
-                "type": 18
-              }
             }
           ],
           "docs": [],
@@ -172,7 +163,7 @@
             "displayName": [
               "Option"
             ],
-            "type": 19
+            "type": 18
           },
           "selector": "0x5c417b0c"
         },
@@ -196,7 +187,7 @@
             "displayName": [
               "Option"
             ],
-            "type": 20
+            "type": 19
           },
           "selector": "0xba4dc5ec"
         },
@@ -700,30 +691,6 @@
               "variants": [
                 {
                   "index": 0,
-                  "name": "Against"
-                },
-                {
-                  "index": 1,
-                  "name": "For"
-                }
-              ]
-            }
-          },
-          "path": [
-            "governor",
-            "governor",
-            "EvalType"
-          ]
-        }
-      },
-      {
-        "id": 19,
-        "type": {
-          "def": {
-            "variant": {
-              "variants": [
-                {
-                  "index": 0,
                   "name": "None"
                 },
                 {
@@ -750,7 +717,7 @@
         }
       },
       {
-        "id": 20,
+        "id": 19,
         "type": {
           "def": {
             "variant": {

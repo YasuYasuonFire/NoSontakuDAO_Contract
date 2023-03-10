@@ -10,7 +10,7 @@ export type Key = string | number[]
 
 export type Proposal = {
 	to: AccountId,
-	amount: ReturnNumber,
+	description: Array<number>,
 	voteStart: number,
 	voteEnd: number,
 	executed: boolean
@@ -32,6 +32,11 @@ export enum GovernorError {
 }
 
 export enum VoteType {
+	against = 'Against',
+	for = 'For'
+}
+
+export enum EvalType {
 	against = 'Against',
 	for = 'For'
 }
