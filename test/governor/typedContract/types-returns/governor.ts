@@ -28,7 +28,8 @@ export enum GovernorError {
 	votePeriodNotEnded = 'VotePeriodNotEnded',
 	quorumNotReached = 'QuorumNotReached',
 	transferError = 'TransferError',
-	proposalNotAccepted = 'ProposalNotAccepted'
+	proposalNotAccepted = 'ProposalNotAccepted',
+	callerIsNotOwner = 'CallerIsNotOwner'
 }
 
 export enum VoteType {

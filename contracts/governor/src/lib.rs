@@ -9,6 +9,7 @@ pub mod governor {
         Mapping,
     };
     use openbrush::contracts::traits::psp22::*;
+    use openbrush::contracts::traits::psp22::extensions::mintable::*;
     use openbrush::traits::String;
     use scale::{
         Decode,
@@ -44,6 +45,7 @@ pub mod governor {
         QuorumNotReached,
         TransferError,
         ProposalNotAccepted,
+        CallerIsNotOwner,
     }
 
     #[derive(Encode, Decode, SpreadLayout, PackedLayout, SpreadAllocate, Default)]
@@ -80,6 +82,8 @@ pub mod governor {
         next_proposal_id: u32,
         quorum: u8,
         governance_token: AccountId,
+        eval_token: AccountId,
+        owner: AccountId,
     }
 
     impl Governor {
@@ -88,8 +92,20 @@ pub mod governor {
             ink_lang::utils::initialize_contract(|instance: &mut Self| {
                 instance.quorum = quorum;
                 instance.governance_token = governance_token;
+                instance.owner = instance.env().caller();
             })
         }
+
+        #[ink(message)]
+        //set eval_token address
+        pub fn set_eval_token(&mut self, eval_token: AccountId) -> Result<(), GovernorError> {
+            if !(self.env().caller() == self.owner){
+                return Err(GovernorError::CallerIsNotOwner)
+            }
+            self.eval_token = eval_token;
+            Ok(())
+        }
+
 
         #[ink(message)]
         pub fn propose(
@@ -160,6 +176,8 @@ pub mod governor {
                 EvalType::Against => {
                 }
                 EvalType::For => {
+                    //mint NST token to proposer
+                    let result = PSP22MintableRef::mint(&self.eval_token, proposal.to, 1);
                 }
             }
 

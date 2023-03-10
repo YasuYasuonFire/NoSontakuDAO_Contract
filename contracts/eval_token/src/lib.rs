@@ -33,7 +33,14 @@ pub mod eval_token {
     // Section contains default implementation without any modifications
 	impl PSP22 for Contract {}
 	impl AccessControl for Contract {}
-	impl PSP22Burnable for Contract {}
+	impl PSP22Burnable for Contract {
+		//override.Only MINTER can burn
+		#[ink(message)]
+        #[modifiers(only_role(MINTER))]
+		fn burn(&mut self, account: AccountId, amount: Balance) -> Result<(), PSP22Error> {
+			self._burn_from(account, amount)
+		}
+	}
 	
 	impl PSP22Mintable for Contract {
 		//override.Only MINTER can mint

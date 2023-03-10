@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xf3c5c3530bcfc6ed02ed153ea356bb6b1a730d1ab57b03b30190d430de7e6081",
+    "hash": "0xeca0f393e49a3ae4d6a9cdbd798337d7575d6ab01b96d0ea6ca82ef525170267",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.68.0-nightly"
   },
@@ -44,30 +44,6 @@
       "docs": [],
       "events": [],
       "messages": [
-        {
-          "args": [
-            {
-              "label": "eval_token",
-              "type": {
-                "displayName": [
-                  "AccountId"
-                ],
-                "type": 8
-              }
-            }
-          ],
-          "docs": [],
-          "label": "set_eval_token",
-          "mutates": true,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "Result"
-            ],
-            "type": 15
-          },
-          "selector": "0x26b07ad8"
-        },
         {
           "args": [
             {
@@ -315,24 +291,6 @@
               }
             },
             "name": "governance_token"
-          },
-          {
-            "layout": {
-              "cell": {
-                "key": "0x0600000000000000000000000000000000000000000000000000000000000000",
-                "ty": 8
-              }
-            },
-            "name": "eval_token"
-          },
-          {
-            "layout": {
-              "cell": {
-                "key": "0x0700000000000000000000000000000000000000000000000000000000000000",
-                "ty": 8
-              }
-            },
-            "name": "owner"
           }
         ]
       }
@@ -699,10 +657,6 @@
                 {
                   "index": 9,
                   "name": "ProposalNotAccepted"
-                },
-                {
-                  "index": 10,
-                  "name": "CallerIsNotOwner"
                 }
               ]
             }

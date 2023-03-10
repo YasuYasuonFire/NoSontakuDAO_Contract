@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x9c2d35730426689991d3c324395dea87a347841e398abd0d360ea900c0031609",
+    "hash": "0x5b28b3435bdfcd2b07d54a11dfd4bcc372414b6683a2a799e25b193ce1e09048",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.68.0-nightly"
   },
@@ -63,59 +63,30 @@
       "events": [],
       "messages": [
         {
+          "args": [],
+          "docs": [
+            " Returns the total token supply."
+          ],
+          "label": "PSP22::total_supply",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22_external",
+              "TotalSupplyOutput"
+            ],
+            "type": 0
+          },
+          "selector": "0x162df8c2"
+        },
+        {
           "args": [
             {
               "label": "spender",
               "type": {
                 "displayName": [
                   "psp22_external",
-                  "IncreaseAllowanceInput1"
-                ],
-                "type": 2
-              }
-            },
-            {
-              "label": "delta_value",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "IncreaseAllowanceInput2"
-                ],
-                "type": 0
-              }
-            }
-          ],
-          "docs": [
-            " Atomically increases the allowance granted to `spender` by the caller.",
-            "",
-            " An `Approval` event is emitted.",
-            "",
-            " # Errors",
-            "",
-            " Returns `ZeroSenderAddress` error if sender's address is zero.",
-            "",
-            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
-          ],
-          "label": "PSP22::increase_allowance",
-          "mutates": true,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "psp22_external",
-              "IncreaseAllowanceOutput"
-            ],
-            "type": 22
-          },
-          "selector": "0x96d6b57a"
-        },
-        {
-          "args": [
-            {
-              "label": "to",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "TransferInput1"
+                  "ApproveInput1"
                 ],
                 "type": 2
               }
@@ -125,48 +96,67 @@
               "type": {
                 "displayName": [
                   "psp22_external",
-                  "TransferInput2"
+                  "ApproveInput2"
                 ],
                 "type": 0
-              }
-            },
-            {
-              "label": "data",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "TransferInput3"
-                ],
-                "type": 12
               }
             }
           ],
           "docs": [
-            " Transfers `value` amount of tokens from the caller's account to account `to`",
-            " with additional `data` in unspecified format.",
+            " Allows `spender` to withdraw from the caller's account multiple times, up to",
+            " the `value` amount.",
             "",
-            " On success a `Transfer` event is emitted.",
+            " If this function is called again it overwrites the current allowance with `value`.",
+            "",
+            " An `Approval` event is emitted.",
             "",
             " # Errors",
-            "",
-            " Returns `InsufficientBalance` error if there are not enough tokens on",
-            " the caller's account Balance.",
             "",
             " Returns `ZeroSenderAddress` error if sender's address is zero.",
             "",
             " Returns `ZeroRecipientAddress` error if recipient's address is zero."
           ],
-          "label": "PSP22::transfer",
+          "label": "PSP22::approve",
           "mutates": true,
           "payable": false,
           "returnType": {
             "displayName": [
               "psp22_external",
-              "TransferOutput"
+              "ApproveOutput"
             ],
             "type": 22
           },
-          "selector": "0xdb20f9f5"
+          "selector": "0xb20f1bbd"
+        },
+        {
+          "args": [
+            {
+              "label": "owner",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "BalanceOfInput1"
+                ],
+                "type": 2
+              }
+            }
+          ],
+          "docs": [
+            " Returns the account Balance for the specified `owner`.",
+            "",
+            " Returns `0` if the account is non-existent."
+          ],
+          "label": "PSP22::balance_of",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22_external",
+              "BalanceOfOutput"
+            ],
+            "type": 0
+          },
+          "selector": "0x6568382f"
         },
         {
           "args": [
@@ -251,55 +241,6 @@
               "type": {
                 "displayName": [
                   "psp22_external",
-                  "ApproveInput1"
-                ],
-                "type": 2
-              }
-            },
-            {
-              "label": "value",
-              "type": {
-                "displayName": [
-                  "psp22_external",
-                  "ApproveInput2"
-                ],
-                "type": 0
-              }
-            }
-          ],
-          "docs": [
-            " Allows `spender` to withdraw from the caller's account multiple times, up to",
-            " the `value` amount.",
-            "",
-            " If this function is called again it overwrites the current allowance with `value`.",
-            "",
-            " An `Approval` event is emitted.",
-            "",
-            " # Errors",
-            "",
-            " Returns `ZeroSenderAddress` error if sender's address is zero.",
-            "",
-            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
-          ],
-          "label": "PSP22::approve",
-          "mutates": true,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "psp22_external",
-              "ApproveOutput"
-            ],
-            "type": 22
-          },
-          "selector": "0xb20f1bbd"
-        },
-        {
-          "args": [
-            {
-              "label": "spender",
-              "type": {
-                "displayName": [
-                  "psp22_external",
                   "DecreaseAllowanceInput1"
                 ],
                 "type": 2
@@ -345,6 +286,112 @@
         {
           "args": [
             {
+              "label": "to",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "TransferInput1"
+                ],
+                "type": 2
+              }
+            },
+            {
+              "label": "value",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "TransferInput2"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "label": "data",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "TransferInput3"
+                ],
+                "type": 12
+              }
+            }
+          ],
+          "docs": [
+            " Transfers `value` amount of tokens from the caller's account to account `to`",
+            " with additional `data` in unspecified format.",
+            "",
+            " On success a `Transfer` event is emitted.",
+            "",
+            " # Errors",
+            "",
+            " Returns `InsufficientBalance` error if there are not enough tokens on",
+            " the caller's account Balance.",
+            "",
+            " Returns `ZeroSenderAddress` error if sender's address is zero.",
+            "",
+            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
+          ],
+          "label": "PSP22::transfer",
+          "mutates": true,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22_external",
+              "TransferOutput"
+            ],
+            "type": 22
+          },
+          "selector": "0xdb20f9f5"
+        },
+        {
+          "args": [
+            {
+              "label": "spender",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "IncreaseAllowanceInput1"
+                ],
+                "type": 2
+              }
+            },
+            {
+              "label": "delta_value",
+              "type": {
+                "displayName": [
+                  "psp22_external",
+                  "IncreaseAllowanceInput2"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [
+            " Atomically increases the allowance granted to `spender` by the caller.",
+            "",
+            " An `Approval` event is emitted.",
+            "",
+            " # Errors",
+            "",
+            " Returns `ZeroSenderAddress` error if sender's address is zero.",
+            "",
+            " Returns `ZeroRecipientAddress` error if recipient's address is zero."
+          ],
+          "label": "PSP22::increase_allowance",
+          "mutates": true,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22_external",
+              "IncreaseAllowanceOutput"
+            ],
+            "type": 22
+          },
+          "selector": "0x96d6b57a"
+        },
+        {
+          "args": [
+            {
               "label": "owner",
               "type": {
                 "displayName": [
@@ -383,51 +430,32 @@
           "selector": "0x4d47d921"
         },
         {
-          "args": [],
-          "docs": [
-            " Returns the total token supply."
-          ],
-          "label": "PSP22::total_supply",
-          "mutates": false,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "psp22_external",
-              "TotalSupplyOutput"
-            ],
-            "type": 0
-          },
-          "selector": "0x162df8c2"
-        },
-        {
           "args": [
             {
-              "label": "owner",
+              "label": "role",
               "type": {
                 "displayName": [
-                  "psp22_external",
-                  "BalanceOfInput1"
+                  "accesscontrol_external",
+                  "GetRoleAdminInput1"
                 ],
-                "type": 2
+                "type": 14
               }
             }
           ],
           "docs": [
-            " Returns the account Balance for the specified `owner`.",
-            "",
-            " Returns `0` if the account is non-existent."
+            " Returns the admin role that controls `role`. See `grant_role` and `revoke_role`."
           ],
-          "label": "PSP22::balance_of",
+          "label": "AccessControl::get_role_admin",
           "mutates": false,
           "payable": false,
           "returnType": {
             "displayName": [
-              "psp22_external",
-              "BalanceOfOutput"
+              "accesscontrol_external",
+              "GetRoleAdminOutput"
             ],
-            "type": 0
+            "type": 14
           },
-          "selector": "0x6568382f"
+          "selector": "0x83da3bb2"
         },
         {
           "args": [
@@ -529,72 +557,6 @@
               "type": {
                 "displayName": [
                   "accesscontrol_external",
-                  "HasRoleInput1"
-                ],
-                "type": 14
-              }
-            },
-            {
-              "label": "address",
-              "type": {
-                "displayName": [
-                  "accesscontrol_external",
-                  "HasRoleInput2"
-                ],
-                "type": 2
-              }
-            }
-          ],
-          "docs": [
-            " Returns `true` if `account` has been granted `role`."
-          ],
-          "label": "AccessControl::has_role",
-          "mutates": false,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "accesscontrol_external",
-              "HasRoleOutput"
-            ],
-            "type": 26
-          },
-          "selector": "0xc1d9ac18"
-        },
-        {
-          "args": [
-            {
-              "label": "role",
-              "type": {
-                "displayName": [
-                  "accesscontrol_external",
-                  "GetRoleAdminInput1"
-                ],
-                "type": 14
-              }
-            }
-          ],
-          "docs": [
-            " Returns the admin role that controls `role`. See `grant_role` and `revoke_role`."
-          ],
-          "label": "AccessControl::get_role_admin",
-          "mutates": false,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "accesscontrol_external",
-              "GetRoleAdminOutput"
-            ],
-            "type": 14
-          },
-          "selector": "0x83da3bb2"
-        },
-        {
-          "args": [
-            {
-              "label": "role",
-              "type": {
-                "displayName": [
-                  "accesscontrol_external",
                   "RevokeRoleInput1"
                 ],
                 "type": 14
@@ -635,6 +597,44 @@
         {
           "args": [
             {
+              "label": "role",
+              "type": {
+                "displayName": [
+                  "accesscontrol_external",
+                  "HasRoleInput1"
+                ],
+                "type": 14
+              }
+            },
+            {
+              "label": "address",
+              "type": {
+                "displayName": [
+                  "accesscontrol_external",
+                  "HasRoleInput2"
+                ],
+                "type": 2
+              }
+            }
+          ],
+          "docs": [
+            " Returns `true` if `account` has been granted `role`."
+          ],
+          "label": "AccessControl::has_role",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "accesscontrol_external",
+              "HasRoleOutput"
+            ],
+            "type": 26
+          },
+          "selector": "0xc1d9ac18"
+        },
+        {
+          "args": [
+            {
               "label": "account",
               "type": {
                 "displayName": [
@@ -655,12 +655,7 @@
               }
             }
           ],
-          "docs": [
-            " Destroys `amount` tokens from `account`, deducting from the caller's",
-            " allowance.",
-            "",
-            " See [`PSP22::_burn_from`]."
-          ],
+          "docs": [],
           "label": "PSP22Burnable::burn",
           "mutates": true,
           "payable": false,
@@ -712,23 +707,6 @@
         {
           "args": [],
           "docs": [
-            " Returns the token symbol."
-          ],
-          "label": "PSP22Metadata::token_symbol",
-          "mutates": false,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "psp22metadata_external",
-              "TokenSymbolOutput"
-            ],
-            "type": 21
-          },
-          "selector": "0x34205be5"
-        },
-        {
-          "args": [],
-          "docs": [
             " Returns the token decimals."
           ],
           "label": "PSP22Metadata::token_decimals",
@@ -742,6 +720,23 @@
             "type": 4
           },
           "selector": "0x7271b782"
+        },
+        {
+          "args": [],
+          "docs": [
+            " Returns the token symbol."
+          ],
+          "label": "PSP22Metadata::token_symbol",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "psp22metadata_external",
+              "TokenSymbolOutput"
+            ],
+            "type": 21
+          },
+          "selector": "0x34205be5"
         },
         {
           "args": [],

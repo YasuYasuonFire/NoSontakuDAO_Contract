@@ -28,6 +28,20 @@ export default class Methods {
 	}
 
 	/**
+	* setEvalToken
+	*
+	* @param { ArgumentTypes.AccountId } evalToken,
+	*/
+	"setEvalToken" (
+		evalToken: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "setEvalToken", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, "governor");
+		}, [evalToken], __options);
+	}
+
+	/**
 	* propose
 	*
 	* @param { ArgumentTypes.AccountId } to,

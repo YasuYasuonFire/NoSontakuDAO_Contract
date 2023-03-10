@@ -24,6 +24,19 @@ export default class Methods {
 	}
 
 	/**
+	* setEvalToken
+	*
+	* @param { ArgumentTypes.AccountId } evalToken,
+	* @returns { Result<null, ReturnTypes.GovernorError> }
+	*/
+	"setEvalToken" (
+		evalToken: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Result<null, ReturnTypes.GovernorError> > >{
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "setEvalToken", [evalToken], __options , (result) => { return handleReturnType(result, getTypeDescription(15, 'governor')); });
+	}
+
+	/**
 	* propose
 	*
 	* @param { ArgumentTypes.AccountId } to,

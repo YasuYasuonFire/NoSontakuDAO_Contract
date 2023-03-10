@@ -17,6 +17,18 @@ export default class Methods {
 		this.__nativeContract = nativeContract;
 	}
 	/**
+	 * setEvalToken
+	 *
+	 * @param { ArgumentTypes.AccountId } evalToken,
+	*/
+	"setEvalToken" (
+		evalToken: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "setEvalToken", [evalToken], __options);
+	}
+
+	/**
 	 * propose
 	 *
 	 * @param { ArgumentTypes.AccountId } to,
