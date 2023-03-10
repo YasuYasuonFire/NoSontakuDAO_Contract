@@ -9,6 +9,8 @@ pub mod governance_token {
     // imports from openbrush
 	use openbrush::traits::String;
 	use openbrush::traits::Storage;
+	use openbrush::contracts::psp22::extensions::burnable::*;
+	use openbrush::contracts::psp22::extensions::mintable::*;
 	use openbrush::contracts::psp22::extensions::metadata::*;
 
     #[ink(storage)]
@@ -22,6 +24,8 @@ pub mod governance_token {
     
     // Section contains default implementation without any modifications
 	impl PSP22 for Contract {}
+	impl PSP22Burnable for Contract {}
+	impl PSP22Mintable for Contract {}
 	impl PSP22Metadata for Contract {}
      
     impl Contract {
