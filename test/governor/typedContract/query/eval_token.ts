@@ -24,42 +24,33 @@ export default class Methods {
 	}
 
 	/**
-	* totalSupply
-	*
-	* @returns { ReturnNumber }
-	*/
-	"totalSupply" (
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< ReturnNumber > >{
-		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::totalSupply", [], __options , (result) => { return new ReturnNumber(result as (number | string)); });
-	}
-
-	/**
-	* approve
+	* decreaseAllowance
 	*
 	* @param { ArgumentTypes.AccountId } spender,
-	* @param { (string | number | BN) } value,
+	* @param { (string | number | BN) } deltaValue,
 	* @returns { Result<null, ReturnTypes.PSP22Error> }
 	*/
-	"approve" (
+	"decreaseAllowance" (
 		spender: ArgumentTypes.AccountId,
-		value: (string | number | BN),
+		deltaValue: (string | number | BN),
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.PSP22Error> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "psp22::approve", [spender, value], __options , (result) => { return handleReturnType(result, getTypeDescription(22, 'eval_token')); });
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "psp22::decreaseAllowance", [spender, deltaValue], __options , (result) => { return handleReturnType(result, getTypeDescription(22, 'eval_token')); });
 	}
 
 	/**
-	* balanceOf
+	* increaseAllowance
 	*
-	* @param { ArgumentTypes.AccountId } owner,
-	* @returns { ReturnNumber }
+	* @param { ArgumentTypes.AccountId } spender,
+	* @param { (string | number | BN) } deltaValue,
+	* @returns { Result<null, ReturnTypes.PSP22Error> }
 	*/
-	"balanceOf" (
-		owner: ArgumentTypes.AccountId,
+	"increaseAllowance" (
+		spender: ArgumentTypes.AccountId,
+		deltaValue: (string | number | BN),
 		__options ? : GasLimit,
-	): Promise< QueryReturnType< ReturnNumber > >{
-		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::balanceOf", [owner], __options , (result) => { return new ReturnNumber(result as (number | string)); });
+	): Promise< QueryReturnType< Result<null, ReturnTypes.PSP22Error> > >{
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "psp22::increaseAllowance", [spender, deltaValue], __options , (result) => { return handleReturnType(result, getTypeDescription(22, 'eval_token')); });
 	}
 
 	/**
@@ -82,18 +73,57 @@ export default class Methods {
 	}
 
 	/**
-	* decreaseAllowance
+	* allowance
+	*
+	* @param { ArgumentTypes.AccountId } owner,
+	* @param { ArgumentTypes.AccountId } spender,
+	* @returns { ReturnNumber }
+	*/
+	"allowance" (
+		owner: ArgumentTypes.AccountId,
+		spender: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::allowance", [owner, spender], __options , (result) => { return new ReturnNumber(result as (number | string)); });
+	}
+
+	/**
+	* balanceOf
+	*
+	* @param { ArgumentTypes.AccountId } owner,
+	* @returns { ReturnNumber }
+	*/
+	"balanceOf" (
+		owner: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::balanceOf", [owner], __options , (result) => { return new ReturnNumber(result as (number | string)); });
+	}
+
+	/**
+	* approve
 	*
 	* @param { ArgumentTypes.AccountId } spender,
-	* @param { (string | number | BN) } deltaValue,
+	* @param { (string | number | BN) } value,
 	* @returns { Result<null, ReturnTypes.PSP22Error> }
 	*/
-	"decreaseAllowance" (
+	"approve" (
 		spender: ArgumentTypes.AccountId,
-		deltaValue: (string | number | BN),
+		value: (string | number | BN),
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.PSP22Error> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "psp22::decreaseAllowance", [spender, deltaValue], __options , (result) => { return handleReturnType(result, getTypeDescription(22, 'eval_token')); });
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "psp22::approve", [spender, value], __options , (result) => { return handleReturnType(result, getTypeDescription(22, 'eval_token')); });
+	}
+
+	/**
+	* totalSupply
+	*
+	* @returns { ReturnNumber }
+	*/
+	"totalSupply" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::totalSupply", [], __options , (result) => { return new ReturnNumber(result as (number | string)); });
 	}
 
 	/**
@@ -114,49 +144,6 @@ export default class Methods {
 	}
 
 	/**
-	* increaseAllowance
-	*
-	* @param { ArgumentTypes.AccountId } spender,
-	* @param { (string | number | BN) } deltaValue,
-	* @returns { Result<null, ReturnTypes.PSP22Error> }
-	*/
-	"increaseAllowance" (
-		spender: ArgumentTypes.AccountId,
-		deltaValue: (string | number | BN),
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< Result<null, ReturnTypes.PSP22Error> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "psp22::increaseAllowance", [spender, deltaValue], __options , (result) => { return handleReturnType(result, getTypeDescription(22, 'eval_token')); });
-	}
-
-	/**
-	* allowance
-	*
-	* @param { ArgumentTypes.AccountId } owner,
-	* @param { ArgumentTypes.AccountId } spender,
-	* @returns { ReturnNumber }
-	*/
-	"allowance" (
-		owner: ArgumentTypes.AccountId,
-		spender: ArgumentTypes.AccountId,
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< ReturnNumber > >{
-		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::allowance", [owner, spender], __options , (result) => { return new ReturnNumber(result as (number | string)); });
-	}
-
-	/**
-	* getRoleAdmin
-	*
-	* @param { (number | string | BN) } role,
-	* @returns { number }
-	*/
-	"getRoleAdmin" (
-		role: (number | string | BN),
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< number > >{
-		return queryJSON( this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options );
-	}
-
-	/**
 	* renounceRole
 	*
 	* @param { (number | string | BN) } role,
@@ -169,21 +156,6 @@ export default class Methods {
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.AccessControlError> > >{
 		return queryOkJSON( this.__nativeContract, this.__callerAddress, "accessControl::renounceRole", [role, account], __options , (result) => { return handleReturnType(result, getTypeDescription(24, 'eval_token')); });
-	}
-
-	/**
-	* grantRole
-	*
-	* @param { (number | string | BN) } role,
-	* @param { ArgumentTypes.AccountId } account,
-	* @returns { Result<null, ReturnTypes.AccessControlError> }
-	*/
-	"grantRole" (
-		role: (number | string | BN),
-		account: ArgumentTypes.AccountId,
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< Result<null, ReturnTypes.AccessControlError> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "accessControl::grantRole", [role, account], __options , (result) => { return handleReturnType(result, getTypeDescription(24, 'eval_token')); });
 	}
 
 	/**
@@ -214,6 +186,34 @@ export default class Methods {
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< boolean > >{
 		return queryJSON( this.__nativeContract, this.__callerAddress, "accessControl::hasRole", [role, address], __options );
+	}
+
+	/**
+	* grantRole
+	*
+	* @param { (number | string | BN) } role,
+	* @param { ArgumentTypes.AccountId } account,
+	* @returns { Result<null, ReturnTypes.AccessControlError> }
+	*/
+	"grantRole" (
+		role: (number | string | BN),
+		account: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Result<null, ReturnTypes.AccessControlError> > >{
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "accessControl::grantRole", [role, account], __options , (result) => { return handleReturnType(result, getTypeDescription(24, 'eval_token')); });
+	}
+
+	/**
+	* getRoleAdmin
+	*
+	* @param { (number | string | BN) } role,
+	* @returns { number }
+	*/
+	"getRoleAdmin" (
+		role: (number | string | BN),
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< number > >{
+		return queryJSON( this.__nativeContract, this.__callerAddress, "accessControl::getRoleAdmin", [role], __options );
 	}
 
 	/**
@@ -258,17 +258,6 @@ export default class Methods {
 	}
 
 	/**
-	* tokenSymbol
-	*
-	* @returns { Array<number> | null }
-	*/
-	"tokenSymbol" (
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< Array<number> | null > >{
-		return queryJSON( this.__nativeContract, this.__callerAddress, "psp22Metadata::tokenSymbol", [], __options , (result) => { return handleReturnType(result, getTypeDescription(21, 'eval_token')); });
-	}
-
-	/**
 	* tokenName
 	*
 	* @returns { Array<number> | null }
@@ -277,6 +266,17 @@ export default class Methods {
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Array<number> | null > >{
 		return queryJSON( this.__nativeContract, this.__callerAddress, "psp22Metadata::tokenName", [], __options , (result) => { return handleReturnType(result, getTypeDescription(21, 'eval_token')); });
+	}
+
+	/**
+	* tokenSymbol
+	*
+	* @returns { Array<number> | null }
+	*/
+	"tokenSymbol" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Array<number> | null > >{
+		return queryJSON( this.__nativeContract, this.__callerAddress, "psp22Metadata::tokenSymbol", [], __options , (result) => { return handleReturnType(result, getTypeDescription(21, 'eval_token')); });
 	}
 
 }

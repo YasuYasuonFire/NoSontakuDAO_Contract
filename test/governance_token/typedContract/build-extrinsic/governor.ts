@@ -17,19 +17,31 @@ export default class Methods {
 		this.__nativeContract = nativeContract;
 	}
 	/**
+	 * setEvalToken
+	 *
+	 * @param { ArgumentTypes.AccountId } evalToken,
+	*/
+	"setEvalToken" (
+		evalToken: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "setEvalToken", [evalToken], __options);
+	}
+
+	/**
 	 * propose
 	 *
 	 * @param { ArgumentTypes.AccountId } to,
-	 * @param { (string | number | BN) } amount,
 	 * @param { (number | string | BN) } duration,
+	 * @param { Array<(number | string | BN)> } description,
 	*/
 	"propose" (
 		to: ArgumentTypes.AccountId,
-		amount: (string | number | BN),
 		duration: (number | string | BN),
+		description: Array<(number | string | BN)>,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__nativeContract, "propose", [to, amount, duration], __options);
+		return buildSubmittableExtrinsic( this.__nativeContract, "propose", [to, duration, description], __options);
 	}
 
 	/**
@@ -37,13 +49,15 @@ export default class Methods {
 	 *
 	 * @param { (number | string | BN) } proposalId,
 	 * @param { ArgumentTypes.VoteType } vote,
+	 * @param { ArgumentTypes.EvalType } eval,
 	*/
 	"vote" (
 		proposalId: (number | string | BN),
 		vote: ArgumentTypes.VoteType,
+		eval: ArgumentTypes.EvalType,
 		__options: GasLimit,
 	){
-		return buildSubmittableExtrinsic( this.__nativeContract, "vote", [proposalId, vote], __options);
+		return buildSubmittableExtrinsic( this.__nativeContract, "vote", [proposalId, vote, eval], __options);
 	}
 
 	/**

@@ -25,14 +25,19 @@ pub mod governance_token {
     // Section contains default implementation without any modifications
 	impl PSP22 for Contract {}
 	impl PSP22Burnable for Contract {}
-	impl PSP22Mintable for Contract {}
+	impl PSP22Mintable for Contract {
+		#[ink(message)]
+        fn mint(&mut self, account: AccountId, amount: Balance) -> Result<(), PSP22Error> {
+            self._mint_to(account, amount)
+		}
+	}
 	impl PSP22Metadata for Contract {}
      
     impl Contract {
         #[ink(constructor)]
-        pub fn new(initial_supply: Balance, name: Option<String>, symbol: Option<String>, decimal: u8) -> Self {
+        pub fn new(name: Option<String>, symbol: Option<String>, decimal: u8) -> Self {
             ink_lang::codegen::initialize_contract(|_instance: &mut Contract|{
-				_instance._mint_to(_instance.env().caller(), initial_supply).expect("Should mint"); 
+				// _instance._mint_to(_instance.env().caller(), initial_supply).expect("Should mint"); 
 				_instance.metadata.name = name;
 				_instance.metadata.symbol = symbol;
 				_instance.metadata.decimals = decimal;

@@ -28,21 +28,35 @@ export default class Methods {
 	}
 
 	/**
+	* setEvalToken
+	*
+	* @param { ArgumentTypes.AccountId } evalToken,
+	*/
+	"setEvalToken" (
+		evalToken: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "setEvalToken", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, "governor");
+		}, [evalToken], __options);
+	}
+
+	/**
 	* propose
 	*
 	* @param { ArgumentTypes.AccountId } to,
-	* @param { (string | number | BN) } amount,
 	* @param { (number | string | BN) } duration,
+	* @param { Array<(number | string | BN)> } description,
 	*/
 	"propose" (
 		to: ArgumentTypes.AccountId,
-		amount: (string | number | BN),
 		duration: (number | string | BN),
+		description: Array<(number | string | BN)>,
 		__options ? : GasLimit,
 	){
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "propose", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, "governor");
-		}, [to, amount, duration], __options);
+		}, [to, duration, description], __options);
 	}
 
 	/**
@@ -50,15 +64,17 @@ export default class Methods {
 	*
 	* @param { (number | string | BN) } proposalId,
 	* @param { ArgumentTypes.VoteType } vote,
+	* @param { ArgumentTypes.EvalType } eval,
 	*/
 	"vote" (
 		proposalId: (number | string | BN),
 		vote: ArgumentTypes.VoteType,
+		eval: ArgumentTypes.EvalType,
 		__options ? : GasLimit,
 	){
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "vote", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, "governor");
-		}, [proposalId, vote], __options);
+		}, [proposalId, vote, eval], __options);
 	}
 
 	/**

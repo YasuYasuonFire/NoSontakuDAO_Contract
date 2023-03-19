@@ -22,13 +22,11 @@ export default class Constructors {
     /**
     * new
     *
-	* @param { (string | number | BN) } initialSupply,
 	* @param { Array<(number | string | BN)> | null } name,
 	* @param { Array<(number | string | BN)> | null } symbol,
 	* @param { (number | string | BN) } decimal,
 	*/
    	async "new" (
-   		initialSupply: (string | number | BN),
    		name: Array<(number | string | BN)> | null,
    		symbol: Array<(number | string | BN)> | null,
    		decimal: (number | string | BN),
@@ -39,7 +37,7 @@ export default class Constructors {
 		const gasLimit = 100000 * 1000000 || __options?.gasLimit;
 
 		const storageDepositLimit = __options?.storageDepositLimit;
-        const tx = code.tx["new"]!({ gasLimit, storageDepositLimit, value: __options?.value }, initialSupply, name, symbol, decimal);
+        const tx = code.tx["new"]!({ gasLimit, storageDepositLimit, value: __options?.value }, name, symbol, decimal);
 		let response;
 
 		try {

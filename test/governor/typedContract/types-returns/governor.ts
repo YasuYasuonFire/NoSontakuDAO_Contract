@@ -29,7 +29,9 @@ export enum GovernorError {
 	quorumNotReached = 'QuorumNotReached',
 	transferError = 'TransferError',
 	proposalNotAccepted = 'ProposalNotAccepted',
-	callerIsNotOwner = 'CallerIsNotOwner'
+	callerIsNotOwner = 'CallerIsNotOwner',
+	voteIsWrong = 'VoteIsWrong',
+	evalIsWrong = 'EvalIsWrong'
 }
 
 export enum VoteType {

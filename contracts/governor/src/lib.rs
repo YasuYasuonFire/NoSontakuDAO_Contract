@@ -11,6 +11,7 @@ pub mod governor {
     use openbrush::contracts::traits::psp22::*;
     use openbrush::contracts::traits::psp22::extensions::mintable::*;
     use openbrush::traits::String;
+    //use ink_prelude::string::{ String, ToString};
     use scale::{
         Decode,
         Encode,
@@ -46,6 +47,8 @@ pub mod governor {
         TransferError,
         ProposalNotAccepted,
         CallerIsNotOwner,
+        VoteIsWrong,
+        EvalIsWrong,
     }
 
     #[derive(Encode, Decode, SpreadLayout, PackedLayout, SpreadAllocate, Default)]
@@ -171,6 +174,11 @@ pub mod governor {
                     proposal_vote.for_votes += weight;
                 }
             }
+            // if(vote == 0){
+            //     proposal_vote.against_votes += weight;
+            // }else{
+            //     proposal_vote.for_votes += weight;
+            // }
 
             match eval {
                 EvalType::Against => {
@@ -180,6 +188,9 @@ pub mod governor {
                     let result = PSP22MintableRef::mint(&self.eval_token, proposal.to, 1);
                 }
             }
+            // if(eval != 0){
+            //     let result = PSP22MintableRef::mint(&self.eval_token, proposal.to, 1);
+            // }
 
             self.proposal_votes.insert(&proposal_id, &proposal_vote);
             Ok(())

@@ -35,38 +35,6 @@ export default class Methods {
 	}
 
 	/**
-	* transferFrom
-	*
-	* @param { ArgumentTypes.AccountId } from,
-	* @param { ArgumentTypes.AccountId } to,
-	* @param { (string | number | BN) } value,
-	* @param { Array<(number | string | BN)> } data,
-	* @returns { void }
-	*/
-	"transferFrom" (
-		from: ArgumentTypes.AccountId,
-		to: ArgumentTypes.AccountId,
-		value: (string | number | BN),
-		data: Array<(number | string | BN)>,
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::transferFrom", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, "governance_token");
-		}, [from, to, value, data], __options);
-	}
-
-	/**
-	* totalSupply
-	*
-	* @returns { ReturnNumber }
-	*/
-	"totalSupply" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< ReturnNumber > >{
-		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::totalSupply", [], __options, (result) => { return new ReturnNumber(result as (number | string)); });
-	}
-
-	/**
 	* decreaseAllowance
 	*
 	* @param { ArgumentTypes.AccountId } spender,
@@ -79,53 +47,6 @@ export default class Methods {
 		__options: GasLimit,
 	){
 		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::decreaseAllowance", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, "governance_token");
-		}, [spender, deltaValue], __options);
-	}
-
-	/**
-	* approve
-	*
-	* @param { ArgumentTypes.AccountId } spender,
-	* @param { (string | number | BN) } value,
-	* @returns { void }
-	*/
-	"approve" (
-		spender: ArgumentTypes.AccountId,
-		value: (string | number | BN),
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::approve", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, "governance_token");
-		}, [spender, value], __options);
-	}
-
-	/**
-	* balanceOf
-	*
-	* @param { ArgumentTypes.AccountId } owner,
-	* @returns { ReturnNumber }
-	*/
-	"balanceOf" (
-		owner: ArgumentTypes.AccountId,
-		__options: GasLimit,
-	): Promise< QueryReturnType< ReturnNumber > >{
-		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::balanceOf", [owner], __options, (result) => { return new ReturnNumber(result as (number | string)); });
-	}
-
-	/**
-	* increaseAllowance
-	*
-	* @param { ArgumentTypes.AccountId } spender,
-	* @param { (string | number | BN) } deltaValue,
-	* @returns { void }
-	*/
-	"increaseAllowance" (
-		spender: ArgumentTypes.AccountId,
-		deltaValue: (string | number | BN),
-		__options: GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::increaseAllowance", (events: EventRecord) => {
 			return decodeEvents(events, this.__nativeContract, "governance_token");
 		}, [spender, deltaValue], __options);
 	}
@@ -165,14 +86,116 @@ export default class Methods {
 	}
 
 	/**
-	* tokenSymbol
+	* increaseAllowance
 	*
-	* @returns { Array<number> | null }
+	* @param { ArgumentTypes.AccountId } spender,
+	* @param { (string | number | BN) } deltaValue,
+	* @returns { void }
 	*/
-	"tokenSymbol" (
+	"increaseAllowance" (
+		spender: ArgumentTypes.AccountId,
+		deltaValue: (string | number | BN),
 		__options: GasLimit,
-	): Promise< QueryReturnType< Array<number> | null > >{
-		return queryJSON( this.__nativeContract, this.__callerAddress, "psp22Metadata::tokenSymbol", [], __options, (result) => { return handleReturnType(result, getTypeDescription(13, 'governance_token')); });
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::increaseAllowance", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, "governance_token");
+		}, [spender, deltaValue], __options);
+	}
+
+	/**
+	* approve
+	*
+	* @param { ArgumentTypes.AccountId } spender,
+	* @param { (string | number | BN) } value,
+	* @returns { void }
+	*/
+	"approve" (
+		spender: ArgumentTypes.AccountId,
+		value: (string | number | BN),
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::approve", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, "governance_token");
+		}, [spender, value], __options);
+	}
+
+	/**
+	* balanceOf
+	*
+	* @param { ArgumentTypes.AccountId } owner,
+	* @returns { ReturnNumber }
+	*/
+	"balanceOf" (
+		owner: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::balanceOf", [owner], __options, (result) => { return new ReturnNumber(result as (number | string)); });
+	}
+
+	/**
+	* transferFrom
+	*
+	* @param { ArgumentTypes.AccountId } from,
+	* @param { ArgumentTypes.AccountId } to,
+	* @param { (string | number | BN) } value,
+	* @param { Array<(number | string | BN)> } data,
+	* @returns { void }
+	*/
+	"transferFrom" (
+		from: ArgumentTypes.AccountId,
+		to: ArgumentTypes.AccountId,
+		value: (string | number | BN),
+		data: Array<(number | string | BN)>,
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22::transferFrom", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, "governance_token");
+		}, [from, to, value, data], __options);
+	}
+
+	/**
+	* totalSupply
+	*
+	* @returns { ReturnNumber }
+	*/
+	"totalSupply" (
+		__options: GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "psp22::totalSupply", [], __options, (result) => { return new ReturnNumber(result as (number | string)); });
+	}
+
+	/**
+	* burn
+	*
+	* @param { ArgumentTypes.AccountId } account,
+	* @param { (string | number | BN) } amount,
+	* @returns { void }
+	*/
+	"burn" (
+		account: ArgumentTypes.AccountId,
+		amount: (string | number | BN),
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22Burnable::burn", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, "governance_token");
+		}, [account, amount], __options);
+	}
+
+	/**
+	* mint
+	*
+	* @param { ArgumentTypes.AccountId } account,
+	* @param { (string | number | BN) } amount,
+	* @returns { void }
+	*/
+	"mint" (
+		account: ArgumentTypes.AccountId,
+		amount: (string | number | BN),
+		__options: GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "psp22Mintable::mint", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, "governance_token");
+		}, [account, amount], __options);
 	}
 
 	/**
@@ -184,6 +207,17 @@ export default class Methods {
 		__options: GasLimit,
 	): Promise< QueryReturnType< Array<number> | null > >{
 		return queryJSON( this.__nativeContract, this.__callerAddress, "psp22Metadata::tokenName", [], __options, (result) => { return handleReturnType(result, getTypeDescription(13, 'governance_token')); });
+	}
+
+	/**
+	* tokenSymbol
+	*
+	* @returns { Array<number> | null }
+	*/
+	"tokenSymbol" (
+		__options: GasLimit,
+	): Promise< QueryReturnType< Array<number> | null > >{
+		return queryJSON( this.__nativeContract, this.__callerAddress, "psp22Metadata::tokenSymbol", [], __options, (result) => { return handleReturnType(result, getTypeDescription(13, 'governance_token')); });
 	}
 
 	/**

@@ -24,20 +24,33 @@ export default class Methods {
 	}
 
 	/**
+	* setEvalToken
+	*
+	* @param { ArgumentTypes.AccountId } evalToken,
+	* @returns { Result<null, ReturnTypes.GovernorError> }
+	*/
+	"setEvalToken" (
+		evalToken: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Result<null, ReturnTypes.GovernorError> > >{
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "setEvalToken", [evalToken], __options , (result) => { return handleReturnType(result, getTypeDescription(15, 'governor')); });
+	}
+
+	/**
 	* propose
 	*
 	* @param { ArgumentTypes.AccountId } to,
-	* @param { (string | number | BN) } amount,
 	* @param { (number | string | BN) } duration,
+	* @param { Array<(number | string | BN)> } description,
 	* @returns { Result<null, ReturnTypes.GovernorError> }
 	*/
 	"propose" (
 		to: ArgumentTypes.AccountId,
-		amount: (string | number | BN),
 		duration: (number | string | BN),
+		description: Array<(number | string | BN)>,
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.GovernorError> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "propose", [to, amount, duration], __options , (result) => { return handleReturnType(result, getTypeDescription(15, 'governor')); });
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "propose", [to, duration, description], __options , (result) => { return handleReturnType(result, getTypeDescription(15, 'governor')); });
 	}
 
 	/**
@@ -45,14 +58,16 @@ export default class Methods {
 	*
 	* @param { (number | string | BN) } proposalId,
 	* @param { ArgumentTypes.VoteType } vote,
+	* @param { ArgumentTypes.EvalType } eval,
 	* @returns { Result<null, ReturnTypes.GovernorError> }
 	*/
 	"vote" (
 		proposalId: (number | string | BN),
 		vote: ArgumentTypes.VoteType,
+		eval: ArgumentTypes.EvalType,
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.GovernorError> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "vote", [proposalId, vote], __options , (result) => { return handleReturnType(result, getTypeDescription(15, 'governor')); });
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "vote", [proposalId, vote, eval], __options , (result) => { return handleReturnType(result, getTypeDescription(15, 'governor')); });
 	}
 
 	/**
@@ -78,7 +93,7 @@ export default class Methods {
 		proposalId: (number | string | BN),
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< ReturnTypes.ProposalVote | null > >{
-		return queryJSON( this.__nativeContract, this.__callerAddress, "getProposalVote", [proposalId], __options , (result) => { return handleReturnType(result, getTypeDescription(18, 'governor')); });
+		return queryJSON( this.__nativeContract, this.__callerAddress, "getProposalVote", [proposalId], __options , (result) => { return handleReturnType(result, getTypeDescription(19, 'governor')); });
 	}
 
 	/**
@@ -91,7 +106,7 @@ export default class Methods {
 		proposalId: (number | string | BN),
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< ReturnTypes.Proposal | null > >{
-		return queryJSON( this.__nativeContract, this.__callerAddress, "getProposal", [proposalId], __options , (result) => { return handleReturnType(result, getTypeDescription(19, 'governor')); });
+		return queryJSON( this.__nativeContract, this.__callerAddress, "getProposal", [proposalId], __options , (result) => { return handleReturnType(result, getTypeDescription(20, 'governor')); });
 	}
 
 	/**

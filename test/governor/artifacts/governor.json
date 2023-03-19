@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xf3c5c3530bcfc6ed02ed153ea356bb6b1a730d1ab57b03b30190d430de7e6081",
+    "hash": "0x6869cb5ca2b8363bf9e5a0130b4741181294ff2bf6d933754a3fac59e73fe5d5",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.68.0-nightly"
   },
@@ -703,6 +703,14 @@
                 {
                   "index": 10,
                   "name": "CallerIsNotOwner"
+                },
+                {
+                  "index": 11,
+                  "name": "VoteIsWrong"
+                },
+                {
+                  "index": 12,
+                  "name": "EvalIsWrong"
                 }
               ]
             }
