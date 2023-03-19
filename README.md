@@ -2,6 +2,9 @@
 
 ### アプリケーションURL
 https://no-sontaku-dao-ui.vercel.app/
+※3/19日の提出時点、shidenネットワークへdeployしたバージョンになっております。
+しかし、shidenとの接続の問題が発生し正常にトランザクションを発生させることができません。
+デモ動画では、localネットワークで正常動作している状態で説明をしております。
 
 ### スライド資料によるコンセプト説明
 https://docs.google.com/presentation/d/18PbGGMTeZNeJOQVOAwTxhTIVnOQ__I1pB1RSmLG3cg4/edit?usp=sharing
