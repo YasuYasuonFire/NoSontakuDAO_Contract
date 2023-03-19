@@ -3,6 +3,9 @@
 ### アプリケーションURL
 https://no-sontaku-dao-ui.vercel.app/
 
+### スライド資料によるコンセプト説明
+https://docs.google.com/presentation/d/18PbGGMTeZNeJOQVOAwTxhTIVnOQ__I1pB1RSmLG3cg4/edit?usp=sharing
+
 ### その他リポジトリ(フロントエンド)
 https://github.com/YasuYasuonFire/NoSontakuDAO-ui
 
